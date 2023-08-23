@@ -1,1 +1,6 @@
-
+kSQL Introduction
+- kSQLDB is a database for building real-time applications that leverage
+  stream processing.
+  -JOINS  -AGGREGATES
+  -Push & Pull Queries  -Filters
+  -User Defined Functions  - Connectors
