@@ -23,4 +23,9 @@ To see from the beginning of the stream: SET 'auto.offset.reset'='earliest';
 
 To continuously see the streams : SELECT * FROM movements emit changes;
 
+CREATE TABLE PERSON_STATS WITH (VALUE_FORMAT='AVRO') AS 
+SELECT PERSON, LATEST_BY_OFFSET (LOCATION) AS LATEST_LOCATION, 
+COUNT(*) AS LOCATION_CHANGES, COUNT_DISTINCT (LOCATION) AS
+UNIQUE_LOCATIONS FROM MOVEMENTS GROUP BY PERSON EMIT CHANGES;
+
 
