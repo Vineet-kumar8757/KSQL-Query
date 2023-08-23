@@ -4,3 +4,16 @@ kSQL Introduction
   -JOINS  -AGGREGATES
   -Push & Pull Queries  -Filters
   -User Defined Functions  - Connectors
+
+CREATE STREAM MOVEMENTS 
+(PERSON VARCHAR KEY, LOCATION VARCHAR) WITH 
+ (VALUE_FORMAT= 'JSON', PARTITIONS=1, KAFKA_TOPIC='movements');
+
+INSERT INTO movements
+VALUES('Allison', 'Denver');
+INSERT INTO movements
+VALUES('Robin', 'Leeds');
+INSERT INTO movements
+VALUES('Robin', 'Ilkley');
+INSERT INTO movements
+VALUES('Allison', 'Boulder');
