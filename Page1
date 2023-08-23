@@ -23,6 +23,11 @@ To see from the beginning of the stream: SET 'auto.offset.reset'='earliest';
 
 To continuously see the streams : SELECT * FROM movements emit changes;
 
+Reading and writing data from/to Kafka
+CREATE STREAM people WITH (KAFKA_TOPIC='topic1',
+VALUE_FORMAT='AVRO');
+
+
 CREATE TABLE PERSON_STATS WITH (VALUE_FORMAT='AVRO') AS 
 SELECT PERSON, LATEST_BY_OFFSET (LOCATION) AS LATEST_LOCATION, 
 COUNT(*) AS LOCATION_CHANGES, COUNT_DISTINCT (LOCATION) AS
