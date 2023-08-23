@@ -17,3 +17,7 @@ INSERT INTO movements
 VALUES('Robin', 'Ilkley');
 INSERT INTO movements
 VALUES('Allison', 'Boulder');
+
+To see all the streams : SHOW STREAMS;
+To see from the beginning of the stream: SET 'auto.offset.reset'='earliest';
+
