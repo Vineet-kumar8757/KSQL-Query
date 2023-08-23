@@ -1,2 +1,25 @@
 Filtering with kSQLDB
 
+CREATE STREAM orders(id INTEGER KEY, item VARCHAR,
+address STRUCT<city VARCHAR, state VARCHAR>)
+WITH (KAFKA_TOPIC='orders',
+VALUE_FORMAT='json', PARTITIONS=1);
+
+INSERT INTO order(id, item, address) VALUES (140,
+'Mauve Widget', STRUCT(city:='Ithaca', state:='NY'));
+
+
+CREATE STREAM ORDERS_NY AS
+SELECT * FROM ORDERS
+WHERE ADDRESS->STATE = 'New York';
+
+LookUps and Joins with ksqlDB
+-------------------------------
+
+CREATE STREAM orders_enriched AS 
+SELECT o.*, i.*,
+o.orderunits*i.unit_price AS 
+total_order-value FROM orders o 
+LEFT OUTER JOIN items i ON o.itemid = i.id;
+
+
